@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MikeCall</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="copyrights">\u00a9 2016 Haikarosetz</string>
+    <string name="about_message">MikeCall is the proud product of Haikarosetz.</string>
+    <string name="version_title">version 1.0</string>
+    <string name="about_menu">About</string>
+    <string name="email">mikecall-haikarose@gmail.com</string>
+    <string name="web">haikarosetz.com</string>
+    <string name="fb">facebook.com/hakarosetz</string>
+    <string name="noexcuse">You dont have any excuse not to attend phone.</string>
+    <string name="warning_clear_status">Please make sure , your clear your status after your bussy duration end.</string>
+    <string name="count">Please make sure you check your message plan, this will enable you to
+    to avoid extras costs on you sms bundle</string>
+</resources>
