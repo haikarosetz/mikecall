@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
@@ -16,7 +17,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 
+import com.haikarosetz.mikecall.DataStore.ContentStore;
 import com.haikarosetz.mikecall.R;
 import com.haikarosetz.mikecall.fragment.AboutFragment;
 import com.haikarosetz.mikecall.fragment.AssistantFragment;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity
 
 
     private FragmentManager fragmentManager;
+    private FloatingActionButton fab;
 
     public static boolean hasPermissions(Context context, String... permissions) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
@@ -48,6 +53,20 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+        fab=(android.support.design.widget.FloatingActionButton)findViewById(R.id.clear_reminder);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new ContentStore(getBaseContext()).removeAllReminders();
+                //tell the fragment to update itself updateScreen();
+            }
+        });
+
+        fab.setVisibility(View.GONE);
 
 
         int PERMISSION_ALL = 1;
@@ -119,22 +138,30 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_status) {
             fragmentManager.beginTransaction().replace(R.id.container,new StatusFragment()).commit();
             getSupportActionBar().setTitle("Status");
+            fab.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_assistant) {
             fragmentManager.beginTransaction().replace(R.id.container,new AssistantFragment()).commit();
             getSupportActionBar().setTitle("Assistant");
+            fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_favorites) {
             fragmentManager.beginTransaction().replace(R.id.container,new FavoritesFragment()).commit();
             getSupportActionBar().setTitle("Favorites");
+            fab.setImageResource(R.drawable.ic_action_add);
+            fab.setVisibility(View.VISIBLE);
         } else if (id == R.id.nav_smsplan) {
             fragmentManager.beginTransaction().replace(R.id.container,new SmsPlanFragment()).commit();
             getSupportActionBar().setTitle("SmsPlan");
+            fab.setVisibility(View.GONE);
         } else if (id == R.id.nav_missed) {
             fragmentManager.beginTransaction().replace(R.id.container,new MissedFragment()).commit();
             getSupportActionBar().setTitle("MissedCalls");
+            fab.setImageResource(R.drawable.ic_delete_forever);
+            fab.setVisibility(View.VISIBLE);
         }else if(id ==R.id.nav_about){
             fragmentManager.beginTransaction().replace(R.id.container,new AboutFragment()).commit();
             getSupportActionBar().setTitle("About");
+            fab.setVisibility(View.GONE);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

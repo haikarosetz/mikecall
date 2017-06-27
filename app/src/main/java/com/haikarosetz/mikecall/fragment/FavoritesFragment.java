@@ -83,13 +83,13 @@ public class FavoritesFragment extends Fragment {
             }
         });
 
-        adder=(android.support.design.widget.FloatingActionButton)view.findViewById(R.id.fab_fav_add);
+        /*adder=(android.support.design.widget.FloatingActionButton)view.findViewById(R.id.fab_fav_add);
         adder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(intent);
             }
-        });
+        });*/
 
 
         return view;

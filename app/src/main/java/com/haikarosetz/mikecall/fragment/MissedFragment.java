@@ -46,19 +46,9 @@ public class MissedFragment extends Fragment {
         empty_view.setText("No caller has been redirected currently");
 
 
-        fab=(android.support.design.widget.FloatingActionButton)view.findViewById(R.id.clear_reminder);
         list=(ListView)view.findViewById(R.id.reminder_list);
         list.setEmptyView(empty_view);
         updateScreen();
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                new ContentStore(getContext()).removeAllReminders();
-                updateScreen();
-            }
-        });
 
         reminders=new ContentStore(getContext()).getAllReminders(getContext());
 
